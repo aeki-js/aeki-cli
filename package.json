@@ -1,0 +1,24 @@
+{
+  "name": "aeki-cli",
+  "version": "1.0.0",
+  "main": "index.js",
+  "bin": {
+    "aeki-cli": "./src/__aeki__/index.js"
+  },
+  "type": "module",
+  "author": "admin@aeki.dev",
+  "dependencies": {
+    "arg": "^5.0.0",
+    "chalk": "^4.1.1",
+    "cli-spinner": "^0.2.10",
+    "git-clone": "^0.1.0",
+    "inquirer": "^8.1.1",
+    "meow": "^10.0.1",
+    "ncp": "^2.0.0",
+    "ora": "^5.4.1",
+    "rimraf": "^3.0.2",
+    "slugify": "^1.5.3",
+    "tmp": "^0.2.1"
+  },
+  "devDependencies": {}
+}
