@@ -12,7 +12,6 @@ import { appName, checkProjectPath } from './core/index.js'
 import { init } from './calls/init/index.js'
 import * as api from './calls/api/index.js'
 import * as web from './calls/web/index.js'
-// import * as seed from './calls/seed/index.js'
 
 const helpText = `
   ${chalk.bold("Usage:")} ${appName} [command] [options]
