@@ -11,11 +11,44 @@ import {
   runCommand,
 } from '../../core/index.js'
 
+const KEYS_TO_ENV = {
+  'api': [
+    'project',
+    'secure',
+    'api',
+    'web',
+    'mongodb',
+    'google',
+    'sendgrid',
+    'digital_ocean'
+  ],
+  'web': [
+    'project',
+    'api',
+    'web',
+    'google',
+    'digital_ocean',
+    'microsoft',
+  ],
+  'seed': [
+    'project',
+    'secure',
+    'api',
+    'web',
+    'mongodb',
+    'google',
+    'sendgrid',
+    'digital_ocean'
+  ]
+}
+
 const parseSection = (config, sectionName, prefix = '') => {
   let output = ''
   const section = flat(config[sectionName])
+  let i = 0
   for (const key in section) {
-    output += `\n${prefix}${`${`${sectionName}`.toUpperCase()}`.toUpperCase()}_${`${key}`.toUpperCase()}=${section[key]}`
+    output += `${i !== 0 ? '\n' : ''}${prefix}${`${`${sectionName}`.toUpperCase()}`.toUpperCase()}_${`${key}`.toUpperCase()}=${section[key]}`
+    i++
   }
 
   return output
@@ -29,59 +62,52 @@ export const init = async () => {
 
   await setSpinner(
     async () => {
-      await runCommand(`git clone ${config.github.api} && git checkout develop && git pull`)
+      await runCommand(`git clone ${config.github.api} && cd api && git checkout development && git pull`)
 
-      let apiEnvTemplate = parseSection(config, 'project')
-      apiEnvTemplate += parseSection(config, 'secure')
-      apiEnvTemplate += parseSection(config, 'api')
-      apiEnvTemplate += parseSection(config, 'web')
-      apiEnvTemplate += parseSection(config, 'mongodb')
-      apiEnvTemplate += parseSection(config, 'google')
-      apiEnvTemplate += parseSection(config, 'sendgrid')
-      apiEnvTemplate += parseSection(config, 'digital_ocean')
+      let apiEnvTemplate = ''
+
+      KEYS_TO_ENV.api.map((key) => {
+        apiEnvTemplate += parseSection(config, key)
+      })
 
       await writeFile(`${destination}/api/.env`, apiEnvTemplate)
       await runCommand(`cd api && npm install`)
     },
-    `Initializing ${chalk.green('api')}`,
-    `Initialized ${chalk.green('api')}`
+    `Initializing ${chalk.green('api')}\n`,
+    `Initialized ${chalk.green('api')}\n`
   )
 
   await setSpinner(
     async () => {
-      await runCommand(`git clone ${config.github.web} && git checkout develop && git pull`)
+      await runCommand(`git clone ${config.github.web} && cd web && git checkout development && git pull`)
 
-      let webEnvTemplate = parseSection(config, 'project', 'REACT_APP_')
-      webEnvTemplate += parseSection(config, 'api', 'REACT_APP_')
-      webEnvTemplate += parseSection(config, 'web', 'REACT_APP_')
-      webEnvTemplate += parseSection(config, 'google', 'REACT_APP_')
-      webEnvTemplate += parseSection(config, 'digital_ocean', 'REACT_APP_')
-      webEnvTemplate += parseSection(config, 'microsoft', 'REACT_APP_')
+      let webEnvTemplate = ''
+
+      KEYS_TO_ENV.web.map((key) => {
+        webEnvTemplate += parseSection(config, key, 'REACT_APP_')
+      })
 
       await writeFile(`${destination}/web/.env`, webEnvTemplate)
       await runCommand(`cd web && npm install`)
     },
-    `Initializing ${chalk.green('web')}`,
-    `Initialized ${chalk.green('web')}`
+    `Initializing ${chalk.green('web')}\n`,
+    `Initialized ${chalk.green('web')}\n`
   )
 
   await setSpinner(
     async () => {
-      await runCommand(`git clone ${config.github.seed} && git checkout develop && git pull`)
+      await runCommand(`git clone ${config.github.seed} && cd seed && git checkout development && git pull`)
 
-      let seedEnvTemplate = parseSection(config, 'project')
-      seedEnvTemplate += parseSection(config, 'secure')
-      seedEnvTemplate += parseSection(config, 'api')
-      seedEnvTemplate += parseSection(config, 'web')
-      seedEnvTemplate += parseSection(config, 'mongodb')
-      seedEnvTemplate += parseSection(config, 'google')
-      seedEnvTemplate += parseSection(config, 'sendgrid')
-      seedEnvTemplate += parseSection(config, 'digital_ocean')
+      let seedEnvTemplate = ''
+
+      KEYS_TO_ENV.seed.map((key) => {
+        seedEnvTemplate += parseSection(config, key)
+      })
 
       await writeFile(`${destination}/seed/.env`, seedEnvTemplate)
       await runCommand(`cd seed && npm install`)
     },
-    `Initializing ${chalk.green('seed')}`,
-    `Initialized ${chalk.green('seed')}`
+    `Initializing ${chalk.green('seed')}\n`,
+    `Initialized ${chalk.green('seed')}\n`
   )
 }
