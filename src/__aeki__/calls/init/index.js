@@ -10,6 +10,7 @@ import {
   cloneRepo,
   runCommand,
 } from '../../core/index.js'
+import inquirer from 'inquirer'
 
 const KEYS_TO_ENV = {
   'api': [
