@@ -1,6 +1,6 @@
 {
   "name": "aeki-cli",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "main": "index.js",
   "bin": {
     "aeki-cli": "./src/__aeki__/index.js"

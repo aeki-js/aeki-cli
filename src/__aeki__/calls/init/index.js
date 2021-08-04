@@ -45,10 +45,9 @@ const KEYS_TO_ENV = {
 const parseSection = (config, sectionName, prefix = '') => {
   let output = ''
   const section = flat(config[sectionName])
-  let i = 0
+
   for (const key in section) {
-    output += `${i !== 0 ? '\n' : ''}${prefix}${`${`${sectionName}`.toUpperCase()}`.toUpperCase()}_${`${key}`.toUpperCase()}=${section[key]}`
-    i++
+    output += `${prefix}${`${`${sectionName}`.toUpperCase()}`.toUpperCase()}_${`${key}`.toUpperCase()}=${section[key]}\n`
   }
 
   return output
@@ -56,13 +55,41 @@ const parseSection = (config, sectionName, prefix = '') => {
 
 export const init = async () => {
   const destination = `${path.resolve('.')}`
+  const questions = [
+    {
+      type: 'input',
+      name: 'username',
+      message: 'Github Username',
+      async validate(value) {
+        if (!value) {
+          return 'You must enter an username'
+        }
 
+        return true
+      },
+    },
+    {
+      type: 'password',
+      name: 'password',
+      message: 'Passsword',
+      async validate(value) {
+        if (!value) {
+          return 'You must enter a password'
+        }
+
+        return true
+      },
+    },
+  ]
+
+
+  const answers = await inquirer.prompt(questions)
   let config = await readFile(`${destination}/aeki.config.json`)
   config = JSON.parse(config)
 
   await setSpinner(
     async () => {
-      await runCommand(`git clone ${config.github.api} && cd api && git checkout development && git pull`)
+      await runCommand(`git clone ${config.github.api.replace(`https://`, `https://${answers.username}:${answers.password}@`)} && cd api && git checkout development && git pull`)
 
       let apiEnvTemplate = ''
 
@@ -79,7 +106,7 @@ export const init = async () => {
 
   await setSpinner(
     async () => {
-      await runCommand(`git clone ${config.github.web} && cd web && git checkout development && git pull`)
+      await runCommand(`git clone ${config.github.web.replace(`https://`, `https://${answers.username}:${answers.password}@`)} && cd web && git checkout development && git pull`)
 
       let webEnvTemplate = ''
 
@@ -96,7 +123,7 @@ export const init = async () => {
 
   await setSpinner(
     async () => {
-      await runCommand(`git clone ${config.github.seed} && cd seed && git checkout development && git pull`)
+      await runCommand(`git clone ${config.github.seed.replace(`https://`, `https://${answers.username}:${answers.password}@`)} && cd seed && git checkout development && git pull`)
 
       let seedEnvTemplate = ''
 
