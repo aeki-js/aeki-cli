@@ -139,3 +139,54 @@ export const init = async () => {
     `Initialized ${chalk.green('seed')}\n`
   )
 }
+
+export const update = async () => {
+  const destination = `${path.resolve('.')}`
+
+  let config = await readFile(`${destination}/aeki.config.json`)
+  config = JSON.parse(config)
+
+  await setSpinner(
+    async () => {
+      let apiEnvTemplate = ''
+
+      KEYS_TO_ENV.api.map((key) => {
+        apiEnvTemplate += parseSection(config, key)
+      })
+
+      await writeFile(`${destination}/api/.env`, apiEnvTemplate)
+    },
+    `Updating .env for ${chalk.green('api')}\n`,
+    `Updated .env for ${chalk.green('api')}\n`
+  )
+
+  await setSpinner(
+    async () => {
+
+      let webEnvTemplate = ''
+
+      KEYS_TO_ENV.web.map((key) => {
+        webEnvTemplate += parseSection(config, key, 'REACT_APP_')
+      })
+
+      await writeFile(`${destination}/web/.env`, webEnvTemplate)
+    },
+    `Updating .env for ${chalk.green('web')}\n`,
+    `Updated .env for ${chalk.green('web')}\n`
+  )
+
+  await setSpinner(
+    async () => {
+
+      let seedEnvTemplate = ''
+
+      KEYS_TO_ENV.seed.map((key) => {
+        seedEnvTemplate += parseSection(config, key)
+      })
+
+      await writeFile(`${destination}/seed/.env`, seedEnvTemplate)
+    },
+    `Updating .env for ${chalk.green('seed')}\n`,
+    `Updated .env for ${chalk.green('seed')}\n`
+  )
+}

@@ -9,7 +9,7 @@ import meow from 'meow'
 import chalk from 'chalk'
 
 import { appName, checkProjectPath } from './core/index.js'
-import { init } from './calls/init/index.js'
+import { update } from './calls/init/index.js'
 import * as api from './calls/api/index.js'
 import * as web from './calls/web/index.js'
 
@@ -21,6 +21,7 @@ const helpText = `
   
   ${chalk.bold("Commands:")}
     init                  Initialize ${appName} project
+    update                Update environment variables for ${appName} project
   
     api:model:add         Add a model to api stack
     api:model:remove      Remove a model to api stack
@@ -69,6 +70,9 @@ const main = async () => {
         switch (cli.input[0]) {
           case 'init':
             init()
+            break;
+          case 'update':
+            update()
             break;
           case 'api:model:add':
             api.addModel()
