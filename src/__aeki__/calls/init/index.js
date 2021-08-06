@@ -72,10 +72,10 @@ export const init = async () => {
     {
       type: 'password',
       name: 'password',
-      message: 'Passsword',
+      message: 'Access Token',
       async validate(value) {
         if (!value) {
-          return 'You must enter a password'
+          return 'You must enter an access toekn'
         }
 
         return true

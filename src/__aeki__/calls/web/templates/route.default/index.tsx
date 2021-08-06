@@ -7,9 +7,9 @@ import useFetch from '../../__aeki__/hooks/use-fetch'
 /* Components =================================================================================== */
 import AppLayout, { MAX_WIDTH } from './layout'
 import { Box } from '../../__aeki__/components/box/box.component'
-import { FooterContent } from '../home/components/footer'
+import { FooterContent } from '../../components/footer'
 
-const {{componentName}}: FC<any> = (props: any) => {
+const {{ componentName }}: FC < any > = (props: any) => {
   const { inject, eject } = props
   const injection = inject()
 
@@ -72,4 +72,4 @@ const STYLES = stylesheet({
   }
 })
 
-export default {{componentName}}
+export default {{ componentName }}
