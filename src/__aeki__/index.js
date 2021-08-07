@@ -9,7 +9,7 @@ import meow from 'meow'
 import chalk from 'chalk'
 
 import { appName, checkProjectPath } from './core/index.js'
-import { update } from './calls/init/index.js'
+import { init, update } from './calls/init/index.js'
 import * as api from './calls/api/index.js'
 import * as web from './calls/web/index.js'
 
