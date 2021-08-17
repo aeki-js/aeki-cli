@@ -3,7 +3,7 @@ import { Base } from '../../../__aeki__/core/base'
 
 export default new Base({
   id: '{{id}}',
-  groups: ['{{groups}}'],
+  groups: '{{groups}}',
   icon: 'folder',
   name: {
     singular: '{{name.singular}}',

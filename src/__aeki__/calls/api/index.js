@@ -71,9 +71,14 @@ export const addModel = async () => {
     async () => {
       await copyHard(`${dirname}/templates/model`, `${tmpDir.name}/${answers.id}`)
 
+      let groups = '['
+
+      answers.groups.replace(/[ ]/g, '').split(',').map(a => groups += `'${a}',`)
+      groups += ']'
+
       let baseFile = await readFile(`${tmpDir.name}/${answers.id}/base/index.ts`)
       baseFile = baseFile.replace('{{id}}', answers.id)
-      baseFile = baseFile.replace('{{groups}}', answers.groups)
+      baseFile = baseFile.replace('\'{{groups}}\'', groups)
       baseFile = baseFile.replace('{{name.singular}}', answers.nameSingular)
       baseFile = baseFile.replace('{{name.plural}}', answers.namePlural)
 

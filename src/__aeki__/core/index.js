@@ -21,7 +21,7 @@ export const callAsync = (callback) => new Promise((resolve) => {
   callback(resolve)
 })
 
-export const appName = chalk.yellow.bold('AEKI')
+export const appName = chalk.yellow.bold('aeki-cli')
 
 export const setSpinner = async (cb, text, finishedText) => {
   const spinner = ora(text).start();
@@ -151,7 +151,7 @@ export const addToStash = async (destination, stack, item, cb) => {
   stash = JSON.parse(stash)
 
   if (stash) {
-    if (!stash.some(a => a.name === item.name)) {
+    if (!stash.some(a => a.name === item.name && a.type == item.type)) {
       stash.push(item)
 
       await writeFile(`${destination}/${stack}/src/__aeki__/.stash`, JSON.stringify(stash, null, 2))
@@ -170,7 +170,7 @@ export const removeFromStash = async (destination, stack, item, cb) => {
   stash = JSON.parse(stash)
 
   if (stash) {
-    if (!stash.some(a => a.name === item.name)) {
+    if (!stash.some(a => a.name === item.name && a.type == item.type)) {
       const index = stash.findIndex(a => a.name === item.id)
 
       if (index > -1) {

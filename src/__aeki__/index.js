@@ -86,12 +86,12 @@ const main = async () => {
           case 'api:snippet:remove':
             api.removeSnippet()
             break;
-          // case 'route:add':
-          //   api.addRoute()
-          //   break;
-          // case 'route:remove':
-          //   api.removeRoute()
-          //   break;
+          case 'api:route:add':
+            api.addRoute()
+            break;
+          case 'api:route:remove':
+            api.removeRoute()
+            break;
           // case 'group:add':
           //   api.addGroup()
           //   break;

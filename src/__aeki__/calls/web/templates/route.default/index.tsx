@@ -1,3 +1,4 @@
+/* eslint-disable */
 import React, { FC, useEffect } from 'react'
 import { stylesheet } from 'typestyle'
 
@@ -9,7 +10,7 @@ import AppLayout, { MAX_WIDTH } from './layout'
 import { Box } from '../../__aeki__/components/box/box.component'
 import { FooterContent } from '../../components/footer'
 
-const {{ componentName }}: FC < any > = (props: any) => {
+const {{componentName}}: FC < any > = (props: any) => {
   const { inject, eject } = props
   const injection = inject()
 
@@ -18,7 +19,7 @@ const {{ componentName }}: FC < any > = (props: any) => {
       ? injection
       : {},
     {
-      url: `${process.env.REACT_APP_API}{{path}}`,
+      url: `${process.env.REACT_APP_API_URL}{{path}}`,
     },
   )
 
@@ -72,4 +73,4 @@ const STYLES = stylesheet({
   }
 })
 
-export default {{ componentName }}
+export default {{componentName}}

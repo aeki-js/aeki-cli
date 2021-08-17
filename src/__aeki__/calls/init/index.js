@@ -1,13 +1,11 @@
 
 import path from 'path'
 import chalk from 'chalk'
-import os from 'os'
 import {
   readFile,
   writeFile,
   setSpinner,
-  flat,
-  cloneRepo,
+  flat,  
   runCommand,
 } from '../../core/index.js'
 import inquirer from 'inquirer'
@@ -21,7 +19,8 @@ const KEYS_TO_ENV = {
     'mongodb',
     'google',
     'sendgrid',
-    'digital_ocean'
+    'digital_ocean',
+    'stripe',
   ],
   'web': [
     'project',
@@ -30,6 +29,7 @@ const KEYS_TO_ENV = {
     'google',
     'digital_ocean',
     'microsoft',
+    'stripe',
   ],
   'seed': [
     'project',
