@@ -9,6 +9,7 @@ export default new Base({
     singular: '{{name.singular}}',
     plural: '{{name.plural}}',
   },
+  isUsingObjectId: true,
   primaryKey: 'body.name',
   order: 0,
 })
