@@ -12,6 +12,7 @@ import { appName, checkProjectPath } from './core/index.js'
 import { init, update } from './calls/init/index.js'
 import * as api from './calls/api/index.js'
 import * as web from './calls/web/index.js'
+import * as seed from './calls/seed/index.js'
 
 const helpText = `
   ${chalk.bold("Usage:")} ${appName} [command] [options]
@@ -34,6 +35,12 @@ const helpText = `
     web:route:remove      Remove a route from web stack
     web:snippet:add       Add a snippet to web stack
     web:snippet:remove    Remove a snippet from web stack
+    web:modal:add         Add a modal to web stack
+    web:modal:remove      Remove a modal from web stack
+
+    seed:sync             Sync api stack models to seed stack
+    seed:script:add       Add a script to seed stack
+    seed:script:remove    Remove a script from seed stack
  `
 
 // x api:route:add         Add a route to api stack
@@ -111,28 +118,27 @@ const main = async () => {
           case 'web:snippet:remove':
             web.removeSnippet()
             break;
-
-          // case 'modal:add':
-          //   web.addModal()
-          //   break;
-          // case 'modal:remove':
-          //   web.removeModal()
-          //   break;
+          case 'web:modal:add':
+            web.addModal()
+            break;
+          case 'web:modal:remove':
+            web.removeModal()
+            break;
           // case 'view:add':
           //   web.addView()
           //   break;
           // case 'view:remove':
           //   web.removeView()
           //   break;
-          // case 'script:add':
-          //   seed.addScript()
-          //   break;
-          // case 'script:remove':
-          //   seed.removeScript()
-          //   break;
-          // case 'sync:models':
-          //   seed.syncModels()
-          //   break;
+          case 'seed:script:add':
+            seed.addScript()
+            break;
+          case 'seed:script:remove':
+            seed.removeScript()
+            break;
+          case 'seed:sync':
+            seed.syncModels()
+            break;
           default:
             console.log(chalk.red((`   ${cli.input[0]} command does not exist.`)))
             console.log(helpText)

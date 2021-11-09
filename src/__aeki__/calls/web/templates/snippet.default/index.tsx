@@ -1,20 +1,20 @@
-import React, { useContext, useEffect } from "react"
-import { classes } from "typestyle"
+import React, { useContext, useEffect } from 'react'
+import { classes } from 'typestyle'
 
 /* Context ====================================================================================== */
-import { NavigationContext } from "../../__aeki__/contexts/navigation"
+import { NavigationContext } from '../../__aeki__/contexts/navigation'
 
 /* Core ========================================================================================= */
-import { addSnippet } from "../../__aeki__/core/snippet-manager"
+import { addSnippet } from '../../__aeki__/core/snippet-manager'
 
 /* Hooks ======================================================================================== */
-import useFetch from "../../__aeki__/hooks/use-fetch"
+import useFetch from '../../__aeki__/hooks/use-fetch'
 
 /* Components =================================================================================== */
-import { Snippet, SnippetHead, SnippetBody } from "../../__aeki__/modules/layouts/snippet"
+import { Snippet, SnippetHead, SnippetBody } from '../../__aeki__/modules/layouts/snippet'
 
 /* Styles ======================================================================================= */
-import { mt8 } from "../../__aeki__/styles/styleset/margin/mt8"
+import { mt8 } from '../../__aeki__/styles/styleset/margin/mt8'
 
 export default addSnippet('{{componentName}}', (props: any) => {
   const { title } = props
@@ -29,10 +29,10 @@ export default addSnippet('{{componentName}}', (props: any) => {
     }
   }, [data.mounted])
 
-  return <Snippet>
-    <SnippetHead title={title} />
-    <SnippetBody>
-      {`{{componentName}}`}
-    </SnippetBody>
-  </Snippet>
+  return (
+    <Snippet>
+      <SnippetHead title={title} />
+      <SnippetBody>{'{{componentName}}'}</SnippetBody>
+    </Snippet>
+  )
 })

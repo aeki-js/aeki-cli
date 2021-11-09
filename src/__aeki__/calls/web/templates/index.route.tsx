@@ -2,6 +2,7 @@
 import React from 'react'
 import loadable from '@loadable/component'
 import { Route, useHistory } from 'react-router-dom'
+import { Modal } from '../__aeki__/components/modal'
 
 export const AsyncPage = (props: {
   name: string
@@ -37,13 +38,16 @@ export const AsyncPage = (props: {
       exact={exact}
       component={() => {
         return (
-          <Component
-            injection={injection}
-            inject={inject}
-            eject={() => {
-              ;(window as any).__aeki__ = null
-            }}
-          />
+          <>
+            <Component
+              injection={injection}
+              inject={inject}
+              eject={() => {
+                ;(window as any).__aeki__ = null
+              }}
+            />
+            <Modal.render />
+          </>
         )
       }}
     />

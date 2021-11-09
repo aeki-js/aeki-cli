@@ -30,8 +30,8 @@ Base.setTable({
           name: 'createdAt',
           label: 'Created At',
         },
-      ]
-    })
+      ],
+    }),
   ],
 
   /* Table / Heders ============================================================================= */
@@ -43,7 +43,7 @@ Base.setTable({
         width: 1,
         minWidth: 150,
       },
-    })
+    }),
   ],
 
   /* Table / Select ============================================================================= */
@@ -53,13 +53,7 @@ Base.setTable({
   lookups: [],
 
   /* View / Snippets ============================================================================ */
-  snippets: [
-    Snippets.Row(
-      Snippets.Column(
-        Snippets.TableView()
-      )
-    )
-  ],
+  snippets: [Snippets.Row(Snippets.Column(Snippets.TableView()))],
 
   /* View / Actions ============================================================================= */
   actions: [
@@ -77,7 +71,7 @@ Base.setTable({
       type: 'request',
       to: new Operator.internal(['get', ['base', 'helper.routes.delete/table/row']]),
       hidden: new Operator.internal(['not-equal', [['permission', 'd'], true]]),
-      icon: 'delete'
+      icon: 'delete',
     }),
   ],
 })

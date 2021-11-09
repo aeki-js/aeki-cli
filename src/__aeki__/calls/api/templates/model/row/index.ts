@@ -16,13 +16,7 @@ Base.setRow({
   lookups: [],
 
   /* View / Snippets ============================================================================ */
-  snippets: [
-    Snippets.Row(
-      Snippets.Column(
-        Snippets.RowView()
-      )
-    )
-  ],
+  snippets: [Snippets.Row(Snippets.Column(Snippets.RowView()))],
 
   /* View / Actions ============================================================================= */
   actions: [

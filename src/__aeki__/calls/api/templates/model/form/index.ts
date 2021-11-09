@@ -26,21 +26,9 @@ Base.setForm({
   /* Form / Lookups ============================================================================= */
   lookups: [],
 
-  /* View / Snippets ============================================================================ */
-  snippets: [
-    Snippets.Row(
-      Snippets.Column(
-        Snippets.FormView()
-      )
-    )
-  ],
+  /* Form / Snippets ============================================================================ */
+  snippets: [Snippets.Row(Snippets.Column(Snippets.FormView()))],
 
-  /* View / Actions ============================================================================= */
-  actions: [
-    Actions.form({
-      label: 'Save',
-      type: 'save',
-      primary: true,
-    }),
-  ],
+  /* Form / Actions ============================================================================= */
+  actions: [],
 })

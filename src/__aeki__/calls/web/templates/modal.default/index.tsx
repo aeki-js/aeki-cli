@@ -14,7 +14,7 @@ import { p12 } from '../../__aeki__/styles/styleset/padding/p12'
 import { pb0 } from '../../__aeki__/styles/styleset/padding/pb0'
 import { pt0 } from '../../__aeki__/styles/styleset/padding/pt0'
 
-Modal.add('{{componentName}}', (props: { label?: string, handleContentClick?: any }) => {
+Modal.add('{{componentName}}', (props: { label?: string; handleContentClick?: any }) => {
   const { label, handleContentClick } = props
 
   return (
@@ -35,8 +35,7 @@ Modal.add('{{componentName}}', (props: { label?: string, handleContentClick?: an
               size="sm"
               square
             />
-            <Button
-              onClick={() => { }}
+            <Button              
               label={'Confirm'}
               baseline="primary"
               size="sm"
